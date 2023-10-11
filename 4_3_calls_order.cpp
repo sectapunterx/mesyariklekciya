@@ -10,7 +10,7 @@ struct B {
     B () { std::cout << "B"; }
     ~B () { std::cout << "~B"; }
 };
-struct Base{
+struct Base {
     int x = 0;
     A a;
     Base () { std::cout << "Base"; }
