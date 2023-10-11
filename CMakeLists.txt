@@ -3,5 +3,5 @@ project(mesyariklekciya)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(mesyariklekciya 4_3_calls_order.cpp
-        4_4_casts_between_base_derived.cpp)
+add_executable(4_3_calls_order 4_3_calls_order.cpp)
+add_executable(4_4_casts_between_base_derived 4_4_casts_between_base_derived.cpp)

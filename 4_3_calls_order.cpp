@@ -17,17 +17,17 @@ struct Base {
     explicit Base(int x) : x(x) { std::cout << "Base" << x; }
     ~Base () { std::cout << "~Base"; }
 };
-struct Derived: public Base{
+struct Derived: public Base {
     int y = 0;
     B b;
     Derived () { std::cout << "Derived"; }
     Derived (int x, int y): Base(x), y(y) { std::cout << "Derived" << x << y; }
     //TODO: Derived (int x, int y): y(y), Base(x) { } -- WARNING: the order of initialization is important!
-    ~Derived () { std::cout << "~Derived"; }
+    ~Derived () { std::cout << "Derived_cst_cst"; }
 };
 
 
 int main() {
     //4.3 Constructors and Destructors calls order.
-    Derived d(1,2);
+    Derived d(1, 2);
 }
