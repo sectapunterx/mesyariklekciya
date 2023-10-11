@@ -7,7 +7,7 @@
 
 class Base {
 public:
-    int a = 0;
+    int a = 1;
     Base() = default;
     Base(const Base&) {
         std::cout << "copy Base\n";
@@ -28,6 +28,10 @@ public:
 int main() {
     Derived d;
     Base& b = d;
+
+    int xd = 0;
+    int j = reinterpret_cast<Base&>(xd).a;
+
     static_cast<Derived&>(b); // OK: Derived is derived from Base
     static_cast<Base&>(d); // OK: Derived is derived from Base
 
