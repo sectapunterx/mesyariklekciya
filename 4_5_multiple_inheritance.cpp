@@ -2,6 +2,9 @@
 //4.5 Multiple inheritance.
 
 #include <iostream>
+//include clipp from vcpkg
+
+
 
 struct Mother {
     int m = 1;
@@ -11,15 +14,12 @@ struct Father {
     int f = 2;
 };
 
-struct Son: public Mother, public Father {
+struct Son: public Father, public Mother {
     int s = 3;
 };
 
 int main(){
-    Son s;
-    std::cout << &s << std::endl;
+    Father f;
 
-    Father* pf = &s;
-
-    std::cout << pf << std::endl;
+    std::cout << reinterpret_cast<Son&>(f).f << std::endl;
 }
