@@ -3,18 +3,17 @@
 // 6.2 Template function overloading
 #include "iostream"
 
-template <typename T, typename U>
-void f(T t, U u) {
+template <typename T>
+void f(T& t) {
     std::cout << 1;
 }
-void f(int x, int y){
+template <typename T>
+void f(const T& t){
     std::cout << 2;
-}
-void f(int x, double y){
-    std::cout << 3;
 }
 
 int main(){
-    f(1, 1); // 2
-    f(1, 1.2); // 3
+    int x = 0;
+    const int& y = x;
+    f(y);
 }
