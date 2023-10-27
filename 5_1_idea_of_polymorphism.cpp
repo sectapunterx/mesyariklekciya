@@ -5,8 +5,8 @@
 
 //5.1 Idea of polymorphism
 
+//virtual function - function that can be overridden in derived classes
 //polymorphic type - type with virtual functions
-
 //5.2 Dispatching between virtual and non-virtual methods
 struct Base{
     virtual void f() {
