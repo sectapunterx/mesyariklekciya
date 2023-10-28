@@ -26,7 +26,7 @@ struct S<T, T> {
     }
 };
 
-template <typename T, typename U>
+template <typename T, typename U = int>
 void f(T, U){
     std::cout << 1;
 }
