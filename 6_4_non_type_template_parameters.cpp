@@ -5,12 +5,12 @@
 #include "vector"
 
 //int, size_t, char, bool, enum, pointer, reference, function, class
-template <typename T, template<typename> class Container>
+template <typename T, template<typename> class Container = std::vector>
 class Stack{
     Container<T> c;
 public:
-
 };
+
 int main(){
-    Stack<int, std::vector> s;
+    Stack<int> s;
 }
