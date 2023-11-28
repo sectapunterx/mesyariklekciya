@@ -3,6 +3,8 @@ project(mesyariklekciya)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
+include_directories("C:/Users/Fin/.vcpkg-clion/vcpkg/installed/x64-windows/include")
 add_executable(4_3_calls_order 4_3_calls_order.cpp)
 add_executable(4_4_casts_between_base_derived 4_4_casts_between_base_derived.cpp)
 add_executable(4_5_multiple_inheritance 4_5_multiple_inheritance.cpp)

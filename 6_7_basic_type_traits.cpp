@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <type_traits>
+#include "boost/array.hpp"
 
 //metafunction - структура, которая ведет себя как функция и позволяет узнавать про типы на этапе компиляции
 

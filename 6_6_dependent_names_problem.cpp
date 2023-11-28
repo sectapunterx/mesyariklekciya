@@ -17,7 +17,7 @@ struct S<int> {
 
 template <typename T>
 void f(){
-    typename S<T>::X * a;
+    typename S<T>::X * a; // typename - чтобы компилятор не думал, что это умножение
 }
 
 template <typename T>
