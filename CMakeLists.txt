@@ -19,3 +19,4 @@ add_executable(6_4_non_type_template_parameters.cpp 6_4_non_type_template_parame
 add_executable(6_6_dependent_names_problem.cpp 6_6_dependent_names_problem.cpp)
 add_executable(6_7_basic_type_traits.cpp 6_7_basic_type_traits.cpp)
 add_executable(3_10_enum.cpp 3_10_enum.cpp)
+add_executable(7_0_exceptions.cpp 7_0_exceptions.cpp)

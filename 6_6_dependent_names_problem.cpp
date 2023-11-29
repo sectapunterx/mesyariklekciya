@@ -22,7 +22,7 @@ void f(){
 
 template <typename T>
 struct SS{
-    template<int M, int N>
+    template<int M>
     struct A{
 
     };
@@ -35,10 +35,10 @@ struct SS<int> {
 
 template <typename T>
 void g(){
-    typename SS<T>::template A<1, 2> a;
+    typename SS<T>::template A<1> a;
 }
 
 int main(){
-    /*f<int>();
-    f<double>();*/
+    //g<int>();
+    //g<double>();
 }
