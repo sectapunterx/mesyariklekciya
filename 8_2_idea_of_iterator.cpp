@@ -8,9 +8,9 @@
 //Random access iterator: forward, backward, and random access [deque]
 //Contiguous iterator: forward, backward, random access, and contiguous [&(*it)+1]
 //TODO:
-//         | []                | push_back/pop_back    | push_front/pop_front | find             | insert                | erase          | iterator level |
-//vector   | O(1)              | O(1) amort.           | -                    | O(n)             | O(n)                  | O(n)           | contiguous     |
-//deque    | O(1)              | O(1) amort.           | O(1) amort           | O(n)             | O(n)                  | O(n)           | random access  |
+//         | []                | push_back/pop_back    | push_front/pop_front | find             | insert                | erase          | iterator level | iterator invalidation | pointer and reference invalidation|
+//vector   | O(1)              | O(1) amort.           | -                    | O(n)             | O(n)                  | O(n)           | contiguous     | Yes                   | Yes                               |
+//deque    | O(1)              | O(1) amort.           | O(1) amort           | O(n)             | O(n)                  | O(n)           | random access  | Yes                   | No                                |
 //list     | -                 | O(1)                  | O(1)                 | O(n)             | O(1)                  | O(1)           | bidirectional  |
 //set/map  | O(log_n)          | -                     | -                    | O(logn)          | O(log(n))             | O(log(n)       | bidirectional  |
 //unordered| O(1) expected     | -                     | -                    | O(1) expected    | O(1) expected         | O(1) expected  | bidirectional  |
