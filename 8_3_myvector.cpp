@@ -55,6 +55,37 @@ public:
 
 };
 
+template<>
+class vector<bool>{
+private:
+    uint8_t *arr;
+    size_t sz;
+    size_t cap;
+
+    struct BitReference{
+        uint8_t *cell;
+        uint8_t bit;
+
+        BitReference& operator=(bool b){
+            //set corresponding bit in cell to b
+            return *this;
+        }
+        operator bool() const{
+            return *cell & (1 << bit);
+        }
+        BitReference& operator=(const BitReference&) = default;
+    };
+public:
+    BitReference operator[](size_t index){
+        return {arr+index/8, static_cast<uint8_t>(index % 8)};
+    }
+
+};
+
 int main(){
+    vector<bool> v;
+    v[2] = true; // assignment to rvalue
+
+    //vector<int>::iterator it = v.begin();
 
 }
