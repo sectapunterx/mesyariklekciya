@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 include_directories("C:/Users/Fin/.vcpkg-clion/vcpkg/installed/x64-windows/include")
+include_directories("C:/Users/Fin/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include")
 add_executable(4_3_calls_order 4_3_calls_order.cpp)
 add_executable(4_4_casts_between_base_derived 4_4_casts_between_base_derived.cpp)
 add_executable(4_5_multiple_inheritance 4_5_multiple_inheritance.cpp)
@@ -24,3 +25,5 @@ add_executable(7_2_dif_exceptions_re.cpp 7_2_dif_exceptions_re.cpp)
 add_executable(7_3_throw_catch_mechanism.cpp 7_3_throw_catch_mechanism.cpp)
 add_executable(8_2_idea_of_iterator.cpp 8_2_idea_of_iterator.cpp)
 add_executable(8_3_myvector.cpp 8_3_myvector.cpp)
+add_executable(8_5_deque.cpp 8_5_deque.cpp)
+add_executable(8_7_map.cpp 8_7_map.cpp)
