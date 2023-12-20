@@ -14,12 +14,13 @@ void* operator new(size_t n){
 }
 
 void operator delete(void* ptr) noexcept{
+  std::cout << "Deallocating\n";
   std::free(ptr);
 }
 
 int main(){
   std::vector<int> v(5);
-  for(int i = 6; i < 10; ++i){
+  for(int i = 6; i < 100; ++i){
     v.push_back(i);
   }
 }
