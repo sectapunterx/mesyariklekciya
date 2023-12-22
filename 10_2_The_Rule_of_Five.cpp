@@ -15,7 +15,7 @@
 //10.3 std::move implementation
 
 template<typename T>
-std::remove_reference_t<T>&& move(T& x) { // TODO: fix
+std::remove_reference_t<T>&& move(T&& x) { // universal reference
   return static_cast<std::remove_reference_t<T>&&>(x);
 }
 
