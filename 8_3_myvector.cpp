@@ -1,58 +1,16 @@
 // Created by Fin on 04.12.2023.
 //8.3 internals of vector
-
-//10.2 Move-constructor and move-assignment operator
-//The Rule of Five
-/* Copy constructor (const T& other)
- * Copy assignment operator (operator=)
- * Move constructor (T&& other)
- * Move assignment operator (operator=)
- * Destructor (~T)
-*/
-
 #include "iostream"
 #include "cstdint"
 //#include "vector"
 
-template<typename T, typename Alloc = std::allocator<T>>
+template<typename T>
 class vector{
 private:
     T* arr;
     size_t sz;
     size_t cap;
-    Alloc alloc;
 public:
-
-    vector(const vector& other);
-
-    vector& operator=(const vector& other);
-
-    //TODO: WTF is vector&& other
-    vector(vector&& other) noexcept(noexcept(alloc(std::move(other.alloc)))): arr(other.arr), sz(other.sz), cap(other.cap), alloc(std::move(other.alloc)){
-        other.arr = nullptr;
-        other.sz = 0;
-        other.cap = 0;
-    }
-
-    vector& operator=(vector&& other) noexcept(noexcept(alloc(std::move(other.alloc)))){
-        if(this == &other){
-            return *this;
-        }
-        for(size_t i = 0; i < sz; ++i){
-            (arr+i)->~T();
-        }
-        alloc.deallocate(arr, cap);
-        arr = other.arr;
-        sz = other.sz;
-        cap = other.cap;
-        alloc = std::move(other.alloc);
-
-        other.arr = nullptr;
-        other.sz = 0;
-        other.cap = 0;
-        return *this;
-    }
-
     size_t size() const;
     void resize(size_t new_size);
 
