@@ -30,9 +30,9 @@ private:
     using AllocatorTraits = std::allocator_traits<Alloc>;
 public:
 
-    vector(const vector& other);
+    vector(const vector& other) = default;
 
-    vector& operator=(const vector& other);
+    vector& operator=(const vector& other) = default;
 
     //TODO: WTF is vector&& other
     vector(vector&& other) noexcept(noexcept(alloc(std::move(other.alloc)))): arr(other.arr), sz(other.sz),

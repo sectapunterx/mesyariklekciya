@@ -5,12 +5,12 @@
 
 
 template <typename T>
-T&& forward(std::remove_reference_t<T>& x){
+T&& forward(std::remove_reference_t<T>& x) noexcept{
   static_cast<T&&>(x);
 }
 
 template <typename T>
-T&& forward(std::remove_reference_t<T>&& x){
+T&& forward(std::remove_reference_t<T>&& x) noexcept{
   static_cast<T&&>(x);
 }
 
@@ -72,21 +72,22 @@ public:
       if (new_cap <= cap) {
         return;
       }
-      //T* newarr = reinterpret_cast<T*>(new uint8_t[new_cap * sizeof(T)]); //TODO: avoid reinterpret_cast
       T* newarr = AllocatorTraits::allocate(alloc, new_cap);
       for (size_t i = 0; i < sz; ++i) {
         try {
-          //new(newarr + i) T(std::move(arr[i])); //TODO: avoid copy
-          //alloc.construct(newarr + i, std::move(arr[i]));
-          AllocatorTraits::construct(alloc, newarr + i, std::move(arr[i]));
+          //always move if T is not copyable
+          /*This code uses if constexpr to perform a compile-time check of whether T is copy constructible.
+           * If T is not copy constructible, it moves from arr[i].
+           * If T is copy constructible, it uses std::move_if_noexcept to decide whether to move or copy.*/
+          if constexpr (!std::is_copy_constructible_v<T>) {
+            AllocatorTraits::construct(alloc, newarr + i, std::move(arr[i]));
+          } else {
+            AllocatorTraits::construct(alloc, newarr + i, std::move_if_noexcept(arr[i]));
+          }
         } catch (...) {
           for (size_t j = 0; j < i; ++j) {
-            //(newarr + j)->~T();
-            //alloc.destroy(newarr + j);
             AllocatorTraits::destroy(alloc, newarr + j);
           }
-          //delete[] reinterpret_cast<uint8_t*>(newarr);
-          //alloc.deallocate(newarr, new_cap);
           AllocatorTraits::deallocate(alloc, newarr, new_cap);
           throw;
         }
@@ -94,7 +95,6 @@ public:
       for (size_t i = 0; i < sz; ++i) {
         (arr + i)->~T();
       }
-      //delete[] reinterpret_cast<uint8_t*>(arr);
       AllocatorTraits::deallocate(alloc, newarr, new_cap);
       cap = new_cap;
       arr = newarr;
