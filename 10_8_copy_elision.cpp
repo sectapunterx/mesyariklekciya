@@ -17,6 +17,21 @@ S f(int n){
   return S(n);
 }
 
+//NRVO - named return value optimization
+template<typename T>
+T operator+(const T& a, const T& b){
+  T copy = a;
+  copy += b;
+  return copy;
+}
+
+//not NRVO
+template<typename T>
+T operator+(T a, const T& b){
+  a += b;
+  return a;
+}
+
 int main(){
   S v = f(10); // copy constructor 0 times -- copy elision
 
