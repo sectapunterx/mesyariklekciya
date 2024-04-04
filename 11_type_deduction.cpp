@@ -1,3 +1,4 @@
+#include <map>
 #include "iostream"
 #include "vector"
 
@@ -5,14 +6,25 @@
 // 11. Type deduction
 // 11.1 auto keyword (since C++11)
 
+//11.2 decltype(c++11)
+
+
+template <typename Container>
+decltype(auto) getByIndex(Container& cont, size_t index){
+  std::cout << 1 << std::endl;
+  return cont[index];
+}
+
+
 int main(){
-  const auto& x = 5;
+  std::map <int, std::string > m;
+  m[1] = "abc";
+  m[3] = "aaa";
 
-  int i = 1;
-  auto&& y = i; // universal reference
+  int a = 5;
+  decltype(a) b; // compile time
 
-  std::vector<bool> v (5, false);
-  for(size_t it = 0; it < v.size(); ++it){
-    std::cout << v[i] << std::endl;
-  }
+  std::vector<int> v = {1, 2, 3};
+  getByIndex(v, 1) = 0;
+
 }
