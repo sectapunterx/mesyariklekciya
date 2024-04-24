@@ -25,6 +25,6 @@ int main(){
   decltype(a) b; // compile time
 
   std::vector<int> v = {1, 2, 3};
-  getByIndex(v, 1) = 0;
+  getByIndex(v, 1) = 0; // v[1] = 0;
 
 }
