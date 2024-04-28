@@ -1,14 +1,16 @@
 #include <iostream>
 #include <memory>
+#include <type_traits>
 //MVP - Minimum Viable Product
 
 //12.5 custom deleter and allocator problem
 
 //12.6 enable_shared_from_this
+//!!!!!!!! PSEUDOCODE !!!!!!!!!!!!!!!!!!!!!!!!
 
 
-//template<typename T, typename Deleter = std::default_delete<T>, typename Allocator = std::allocator<T>> WRONG
-template<typename T>
+template<typename T, typename Deleter = std::default_delete<T>, typename Allocator = std::allocator<T>> // WRONG
+//template<typename T>
 class shared_ptr {
 private:
     template<typename ...Args>
@@ -28,7 +30,11 @@ private:
     shared_ptr(Control_block* pc);
 
 public:
-    shared_ptr(T* ptr) : ptr(ptr), count(new size_t(1)) {}
+    shared_ptr(T* ptr) : ptr(ptr), count(new size_t(1)) {
+      if constexpr (std::is_base_of_v<enable_shared_from_this<T>, T>){
+        ptr->wp = *this;
+      }
+    }
 
     shared_ptr(const shared_ptr& other) noexcept: ptr(other.ptr), count(other.count) {
       ++*count;
@@ -105,12 +111,16 @@ shared_ptr<T> make_shared(Args&& ... args) {
 
 template<typename T>
 struct enable_shared_from_this{
-  auto shared_from_this();
+  std::weak_ptr<T> wp;
+
+  std::shared_ptr<T> shared_from_this() const{
+    return wp.lock();
+  }
 };
 
 class S: public enable_shared_from_this<S> { //CRTP (Curiously recurring template pattern) - nasledie ot sebya samogo
 public:
-    shared_ptr<S> get_this(){ return shared_from_this(); }
+    std::shared_ptr<S> get_this(){ return shared_from_this(); }
 };
 
 int main() {
