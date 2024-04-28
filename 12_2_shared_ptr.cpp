@@ -6,7 +6,7 @@
 //12.5 custom deleter and allocator problem
 
 //12.6 enable_shared_from_this
-//!!!!!!!! PSEUDOCODE !!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!! PSEUDOCODE !!!!!!!!!!!!!!!!!!!!!!!
 
 
 template<typename T, typename Deleter = std::default_delete<T>, typename Allocator = std::allocator<T>> // WRONG
