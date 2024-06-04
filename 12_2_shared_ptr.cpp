@@ -31,7 +31,7 @@ private:
 
 public:
     shared_ptr(T* ptr) : ptr(ptr), count(new size_t(1)) {
-      if constexpr (std::is_base_of_v<enable_shared_from_this<T>, T>){
+      if constexpr (std::is_base_of_v<enable_shared_from_this<T>, T>) {
         ptr->wp = *this;
       }
     }
@@ -124,7 +124,6 @@ public:
 };
 
 int main() {
-
 
 }
 
